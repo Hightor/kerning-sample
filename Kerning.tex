@@ -1,0 +1,35 @@
+% !TEX TS-program = XeLaTeX
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt,a4paper,openany]{memoir}
+\usepackage{fixltx2e}
+\usepackage[symmetric]{mempages}
+\usepackage{fontspec}
+\usepackage[x11names]{xcolor}
+\newcommand{\afont}{}
+\newcommand{\sampletext}[1]{%
+	{
+	\setmainfont[Ligatures=TeX,Kerning=Off]{\afont}
+	\color{Red4}#1\par
+	}
+	{
+	\setmainfont[Ligatures=TeX,Kerning=On]{\afont}
+	\color{SlateBlue4}#1\par
+	}
+}
+\newcommand{\doit}[1]{%
+	\renewcommand{\afont}{#1}	
+	\chapter{#1}
+	\input{Kerntext}
+	}
+\setmainfont[Ligatures=TeX]{Brill}
+\chapterstyle{bringhurst}
+\setsecnumdepth{none}
+\raggedright
+\setlength{\cftbeforechapterskip}{0.0em}
+\pagestyle{plain}
+\begin{document}
+\doit{Brill}
+\doit{Latin Modern Roman}
+\clearforchapter
+\tableofcontents*
+\end{document}

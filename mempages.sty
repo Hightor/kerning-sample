@@ -1,0 +1,129 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mempages}[2011/09/12 v1.0]
+\usepackage{etoolbox}
+% \usepackage{microtype}
+\newcommand{\genlength}[2]{%
+	\providelength{#1}
+	% \setlength{#1}{#2}
+	\let#1#2
+}
+\newcommand{\mp@caftl}{\checkandfixthelayout}
+\newcommand{\mpstyle}{}
+% -------------------------------------------------
+\DeclareOption{fixed}{\renewcommand{\mp@caftl}{\checkandfixthelayout[fixed]}}
+\DeclareOption{lines}{\renewcommand{\mp@caftl}{\checkandfixthelayout[lines]}}
+\DeclareOption{classic}{\renewcommand{\mp@caftl}{\checkandfixthelayout[classic]}}
+\DeclareOption{nearest}{\renewcommand{\mp@caftl}{\checkandfixthelayout[nearest]}}
+\DeclareOption{bringhurst}{
+	\renewcommand{\mpstyle}{bringhurst}
+	\ifdimcomp{\paperheight}{>}{1.732051\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{1.732051}
+	}{
+		\settrimmedsize{\paperheight}{*}{0.57735027}
+	}
+	\setulmarginsandblock{0.077922\paperheight}{*}{2}
+	\setlrmarginsandblock{0.09774436\paperwidth}{0.2330827\paperwidth}{*}
+	\setmarginnotes{0.03\paperwidth}{0.142857\paperwidth}{\marginparpush}
+}
+\DeclareOption{tschichold}{
+	\renewcommand{\mpstyle}{tschichold}
+	\ifdimcomp{\paperheight}{>}{1.5\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{1.5}
+	}{
+		\settrimmedsize{\paperheight}{*}{0.66666667}
+	}
+	\setulmarginsandblock{0.11111111\paperheight}{*}{2}
+	\setlrmarginsandblock{0.11111111\paperwidth}{*}{2}
+	\setmarginnotes{0.022222222\paperwidth}{0.155555556\paperwidth}{\marginparpush}
+}
+\DeclareOption{isogold}{
+	\renewcommand{\mpstyle}{isogold}
+	\ifdimcomp{\paperheight}{>}{1.41421356\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{1.41421356}
+	}{
+		\settrimmedsize{\paperheight}{*}{0.70710678}
+	}
+	\setulmarginsandblock{0.11111111\paperwidth}{*}{2}
+	\setlrmarginsandblock{0.11111111\paperwidth}{*}{2}
+	\setmarginnotes{0.02222222\paperwidth}{0.15555556\paperwidth}{\marginparpush}
+}
+\DeclareOption{symmetric}{
+	\renewcommand{\mpstyle}{symmetric}
+	\ifdimcomp{\paperheight}{>}{1.41421356\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{1.41421356}
+	}{
+		\settrimmedsize{\paperheight}{*}{0.70710678}
+	}
+	\setulmarginsandblock{0.1\paperheight}{*}{1}
+	\setlrmarginsandblock{0.1\paperwidth}{*}{1}
+	\setmarginnotes{0.01\paperwidth}{0.08\paperwidth}{\marginparpush}
+}
+\DeclareOption{symlandscape}{
+	\renewcommand{\mpstyle}{symmetric}
+	\ifdimcomp{\paperheight}{<}{1.41421356\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{0.70710678}
+	}{
+		\settrimmedsize{\paperheight}{*}{1.41421356}
+	}
+	\setulmarginsandblock{0.1\paperheight}{*}{1}
+	\setlrmarginsandblock{0.1\paperwidth}{*}{1}
+	\setmarginnotes{0.01\paperwidth}{0.08\paperwidth}{\marginparpush}
+}
+\DeclareOption{vdqi}{
+	\renewcommand{\mpstyle}{vdqi}
+	\ifdimcomp{\paperheight}{>}{1.24186\paperwidth}{%
+		\settrimmedsize{1.24186\paperwidth}{\paperwidth}{*}
+	}{
+		\settrimmedsize{\paperheight}{0.80524\paperheight}{*}
+	}
+	\setulmarginsandblock{0.11111111\paperheight}{*}{1}
+	\setlrmarginsandblock{0.0833333\paperwidth}{0.4\paperwidth}{*}
+	\setmarginnotes{0.0555556\paperwidth}{0.233333\paperwidth}{\marginparpush}
+}
+\DeclareOption{tufte}{
+	\renewcommand{\mpstyle}{tufte}
+	\ifdimcomp{\paperheight}{>}{1.41421356\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{1.41421356}
+	}{
+		\settrimmedsize{\paperheight}{*}{0.70710678}
+	}
+	\setulmarginsandblock{0.092256\paperheight}{0.096296\paperheight}{*}
+	\setlrmarginsandblock{0.118095\paperwidth}{0.372381\paperwidth}{*}
+	\setmarginnotes{0.034905\paperwidth}{0.235238\paperwidth}{\marginparpush}
+}
+\DeclareOption{tuftebl}{
+	\renewcommand{\mpstyle}{tuftebl}
+	\ifdimcomp{\paperheight}{>}{1.41421356\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{1.41421356}
+	}{
+		\settrimmedsize{\paperheight}{*}{0.70710678}
+	}
+	\setulmarginsandblock{0.1\paperheight}{0.1\paperheight}{*}
+	\setlrmarginsandblock{0.125\paperwidth}{0.375\paperwidth}{*}
+	\setmarginnotes{0.025\paperwidth}{0.25\paperwidth}{\marginparpush}
+}
+\DeclareOption{laurentian}{
+	\renewcommand{\mpstyle}{laurentian}
+	\ifdimcomp{\paperheight}{>}{1.41421356\paperwidth}{%
+		\settrimmedsize{*}{\paperwidth}{1.41421356}
+	}{
+		\settrimmedsize{\paperheight}{*}{0.70710678}
+	}
+	\setulmarginsandblock{0.05555555\paperheight}{0.11111111\paperheight}{*}
+	\setlrmarginsandblock{0.08333333\paperwidth}{0.33333333\paperwidth}{*}
+	\setmarginnotes{0.04166667\paperwidth}{0.20833333\paperwidth}{\marginparpush}
+}
+\DeclareOption{landsquare}{
+	\renewcommand{\mpstyle}{landsquare}
+	\ifdimcomp{\paperwidth}{>}{1.41421356\paperheight}{%
+		\settrimmedsize{\paperheight}{*}{1.41421356}
+	}{
+		\settrimmedsize{*}{\paperwidth}{0.70710678}
+	}
+	\setulmarginsandblock{0.1125714\paperheight}{0.1874286\paperheight}{*}
+	\setlrmarginsandblock{0.0589226\paperwidth}{0.4461279\paperwidth}{*}
+	\setmarginnotes{0.03979798\paperwidth}{0.29292929\paperwidth}{\marginparpush}
+}
+\ProcessOptions
+\mp@caftl
+\setsidebars{\marginparsep}{\marginparwidth}{*}{*}{*}{\textheight}
